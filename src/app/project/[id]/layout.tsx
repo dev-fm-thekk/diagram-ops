@@ -4,7 +4,7 @@ import {
   SidebarTrigger,
 } from "@/components/ui/sidebar";
 import "../../globals.css";
-import ChatSidebar from "@/components/wrapper/chat-sidebar";
+import ChatSidebar from "@/components/chat-sidebar";
 
 export default function ProjectLayout({
   children,

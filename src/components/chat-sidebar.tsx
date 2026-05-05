@@ -1,5 +1,5 @@
-import { Sidebar, SidebarContent, SidebarFooter, SidebarHeader } from "../ui/sidebar";
-import { Textarea } from "../ui/textarea";
+import { Sidebar, SidebarContent, SidebarFooter, SidebarHeader } from "./ui/sidebar";
+import { Textarea } from "./ui/textarea";
 
 export default function ChatSideBar() {
     return (

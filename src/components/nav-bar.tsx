@@ -1,7 +1,7 @@
-import { Avatar, AvatarFallback, AvatarImage } from "../ui/avatar";
-import { SidebarTrigger } from "../ui/sidebar";
+import { Avatar, AvatarFallback, AvatarImage } from "./ui/avatar";
+import { SidebarTrigger } from "./ui/sidebar";
 import { ModeToggle } from "./mode-toggle";
-import { Separator } from "../ui/separator";
+import { Separator } from "./ui/separator";
 
 export default function Navbar() {
     return (

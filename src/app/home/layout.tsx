@@ -1,8 +1,8 @@
 import "../globals.css";
 
 import { SidebarProvider } from "@/components/ui/sidebar";
-import { AppSidebar } from "@/components/wrapper/app-sidebar";
-import Navbar from "@/components/wrapper/nav-bar";
+import { AppSidebar } from "@/components/app-sidebar";
+import Navbar from "@/components/nav-bar";
 
 export default function AppLayout({
   children,

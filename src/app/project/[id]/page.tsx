@@ -1,4 +1,4 @@
-import CodePreviewSection from "@/components/wrapper/preview";
+import CodePreviewSection from "@/components/preview";
 
 export default function Project() {
     return (
