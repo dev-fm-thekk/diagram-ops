@@ -35,13 +35,7 @@ export default function RootLayout({
     >
       <body className="h-full min-h-full flex flex-col antialiased font-sans">
         <ThemeProvider attribute="class" defaultTheme="dark" enableSystem disableTransitionOnChange>
-          <SidebarProvider>
-            <AppSidebar />
-            <main className="w-full h-[90dvh]">
-              <Navbar />
-              {children}
-            </main>
-          </SidebarProvider>
+          {children}
         </ThemeProvider>
       </body>
     </html>
