@@ -1,5 +1,5 @@
 import { useContext } from "react";
-import { CodeContext } from "@/context/code-context";
+import { CodeContext } from "@/context/code-provider";
 
 // Add this at the bottom of your context file
 export const useCode = () => {

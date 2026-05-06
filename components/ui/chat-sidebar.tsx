@@ -3,15 +3,13 @@ import React from "react";
 
 export default function Sidebar({ children }: { children?: React.ReactNode }) {
   return (
-    <aside className={`h-full bg-sidebar border-r border-sidebar-border flex flex-col transition-all ease-in-out duration-300`}>
-      <div className="flex items-center h-14 px-4 border-b border-sidebar-border">
-        <span className="text-sm font-semibold text-sidebar-foreground truncate">
-          Project Explorer
-        </span>
+    <aside className="h-full bg-sidebar text-sidebar-foreground">
+      <div className="flex h-14 items-center border-b border-sidebar-border px-4">
+        <span className="truncate text-sm font-semibold tracking-tight">Project Explorer</span>
       </div>
-      <div className="flex-1 p-3 flex flex-col gap-2">
+      <div className="flex h-[calc(100%-3.5rem)] flex-col gap-3 p-4">
         {children || (
-          <div className="w-full h-full rounded-[0.625rem] border border-dashed border-sidebar-border/60 bg-sidebar-accent/20" />
+          <div className="h-full w-full rounded-lg border border-dashed border-sidebar-border/70 bg-sidebar-accent/30" />
         )}
       </div>
     </aside>

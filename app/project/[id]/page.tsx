@@ -1,65 +1,71 @@
-'use client'
+"use client";
 
 import CodeScreen from "@/components/screens/code-screen";
+import MermaidRenderer from "@/components/screens/mermaid-renderer";
 import Sidebar from "@/components/ui/chat-sidebar";
 import { SidebarTrigger } from "@/components/ui/sidebar-trigger";
+import { ThemeToggle } from "@/components/ui/toggle-theme";
 import { useState } from "react";
 
 export default function ProjectPage() {
-    const [expand, setExpand] = useState(true);
-    const [current, setCurrent] = useState(0)
+  const [expand, setExpand] = useState(true);
+  const [current, setCurrent] = useState(0);
+
+  // Functional update ensures you're always toggling the LATEST state
+  const toggleSidebar = () => setExpand((prev) => !prev);
+
   return (
-    <main className="flex h-screen w-full bg-background font-sans text-foreground">
-      <div className="flex w-full h-full flex-row">
-        
-        <div className={`transition-all duration-300 ease-in-out ${expand ? "w-md" : "w-0"} overflow-hidden`}>
-           <Sidebar />
+    <main className="flex h-screen w-full overflow-hidden bg-background text-foreground">
+      <aside
+        className={`shrink-0 overflow-hidden border-r border-border bg-sidebar transition-all duration-300 ease-in-out ${
+          expand ? "w-80" : "w-0"
+        }`}
+      >
+        <div className="w-80 h-full">
+          <Sidebar />
         </div>
+      </aside>
 
-        <div className="flex-1 flex flex-col h-full bg-background">
-          
-          <header className="flex items-center gap-4 px-4 h-14 border-b border-border">
-            <SidebarTrigger onClick={() => setExpand(!expand)} isOpen={expand}/>
+      <div className="relative flex h-full min-w-0 flex-1 flex-col bg-background">
+        <header className="flex h-14 items-center gap-3 border-b border-border px-4">
+          <SidebarTrigger onClick={toggleSidebar} isOpen={expand} />
 
-            <nav className="flex items-center bg-muted/50 p-1 rounded-[0.625rem] border border-border">
-              <button 
-                onClick={() => setCurrent(0)}
-                className={`px-4 py-1.5 text-sm font-medium transition-all rounded-lg ${
-                    current === 0 
-                    ? "bg-background shadow-sm border border-border/50 text-foreground" 
-                    : "text-muted-foreground hover:text-foreground"
-                }`}
-              >
-                Code
-              </button>
-              <button 
-                onClick={() => setCurrent(1)}
-                className={`px-4 py-1.5 text-sm font-medium transition-all rounded-lg ${
-                    current === 1 
-                    ? "bg-background shadow-sm border border-border/50 text-foreground" 
-                    : "text-muted-foreground hover:text-foreground"
-                }`}
-              >
-                Preview
-              </button>
-            </nav>
-          </header>
+          <nav className="flex items-center rounded-md border border-border bg-muted/60 p-1">
+            <button
+              onClick={() => setCurrent(0)}
+              className={`rounded-sm px-4 py-1.5 text-sm font-medium transition-colors ${
+                current === 0
+                  ? "bg-background text-foreground shadow-sm"
+                  : "text-muted-foreground hover:text-foreground"
+              }`}
+            >
+              Code
+            </button>
+            <button
+              onClick={() => setCurrent(1)}
+              className={`rounded-sm px-4 py-1.5 text-sm font-medium transition-colors ${
+                current === 1
+                  ? "bg-background text-foreground shadow-sm"
+                  : "text-muted-foreground hover:text-foreground"
+              }`}
+            >
+              Preview
+            </button>
+          </nav>
+          <div className="ml-auto">
+            <ThemeToggle />
+          </div>
+        </header>
 
-          <section className="flex-1 p-4 overflow-hidden">
-            <div className="w-full h-full bg-card text-card-foreground border border-border rounded-[0.625rem] shadow-sm overflow-auto">
-                {/* Conditional Rendering Logic */}
-                {current === 0 ? (
-                    <CodeScreen />
-                ) : (
-                    <div className="p-4">
-                        {/* Replace this with your Preview Component */}
-                        <h2 className="text-lg font-semibold">Live Preview</h2>
-                        <p className="text-muted-foreground">Preview content will render here.</p>
-                    </div>
-                )}
-            </div>
-          </section>
-        </div>
+        <section className="flex-1 overflow-hidden p-4">
+          <div className="h-full w-full rounded-lg border border-border bg-card shadow-sm">
+            {current === 0 ? (
+              <CodeScreen />
+            ) : (
+              <MermaidRenderer />
+            )}
+          </div>
+        </section>
       </div>
     </main>
   );
