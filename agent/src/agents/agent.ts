@@ -1,10 +1,10 @@
-import { END, START, StateGraph, type GraphNode } from "@langchain/langgraph";
-import { AgentState } from "./utils/state";
+import { BaseCheckpointSaver, END, START, StateGraph, type GraphNode } from "@langchain/langgraph";
+import { AgentState } from "../utils/state";
 import { PlanningNode } from "./sub-agents/planning-agent";
 import { CodeGenerator } from "./sub-agents/code-generator";
 import { CodeReviewAgent } from "./sub-agents/code-review";
 import { ChatGroq } from "@langchain/groq";
-import envs from "./config";
+import envs from "../config";
 import { SystemMessage } from "@langchain/core/messages";
 
 const model = new ChatGroq({
@@ -24,6 +24,7 @@ const orchestrator : GraphNode<typeof AgentState> = async (state) => {
     message: [response]
   }
 }
+
 export const graph = new StateGraph(AgentState)
   .addNode("orchestrator", orchestrator)
   .addNode("planning-agent", PlanningNode)
@@ -38,6 +39,7 @@ export const graph = new StateGraph(AgentState)
     if (state.error && state.regenerate) return "code-generator";
     return END;
   })
-  .compile();
 
-            
+export const buildCompiledGraph = (memory: BaseCheckpointSaver) => {
+  return graph.compile({ checkpointer: memory})
+}

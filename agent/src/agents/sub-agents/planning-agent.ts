@@ -1,7 +1,7 @@
 import type { GraphNode } from "@langchain/langgraph";
-import { AgentState, diagramType, legacyType } from "../utils/state";
+import { AgentState, diagramType, legacyType } from "../../utils/state";
 import { ChatGroq } from "@langchain/groq";
-import envs from "../config";
+import envs from "../../config";
 import z from "zod";
 import { AIMessage, SystemMessage } from "@langchain/core/messages";
 
