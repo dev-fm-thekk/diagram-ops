@@ -1,9 +1,0 @@
-{
-  "graphs": {
-    "graph": "./src/agent.ts:graph"
-  },
-
-  "bun": true,
-
-  "env": ".env"
-}
